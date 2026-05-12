@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 034 -- Kth Largest Element In An Array
@@ -8,36 +8,40 @@
 // Difficulty : Medium
 // Study Plan : Day 17
 // =============================================================
+//
+// QUESTION:
+//   Given an integer array nums and an integer k, return the kth largest
+//   element in the array (the kth largest in sorted order, not the kth
+//   distinct element).
+//
+//   Example:
+//     Input : [3,2,1,5,6,4], k=2   Output: 5
+// =============================================================
 
 #include <vector>
 #include <string>
 #include <iostream>
 #include <stack>
 #include <queue>
+#include <unordered_map>
+#include <unordered_set>
+#include <map>
+#include <set>
 #include <algorithm>
+#include <climits>
+#include <numeric>
+#include <functional>
+#include <cmath>
 using namespace std;
-
-// -- Problem --------------------------------------------------
-// Title      : Kth Largest Element In An Array
-// Category   : Heap Priority Queue
-// Difficulty : Medium
-//
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
 class Solution {
 public:
-    // TODO: implement solution for "Kth Largest Element In An Array"
-    void solve() {
-        // implement here
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int, vector<int>, greater<>> pq;
+        for (int n : nums) { pq.push(n); if ((int)pq.size() > k) pq.pop(); }
+        return pq.top();
     }
 };
-
 int main() {
-    Solution sol;
-    cout << "Lesson 034: Kth Largest Element In An Array" << endl;
-    return 0;
+    vector<int> v = {3,2,1,5,6,4};
+    cout << Solution().findKthLargest(v, 2) << endl;
 }

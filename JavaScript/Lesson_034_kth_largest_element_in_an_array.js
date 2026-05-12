@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 034 -- Kth Largest Element In An Array
@@ -8,21 +8,17 @@
 // Difficulty : Medium
 // Study Plan : Day 17
 // =============================================================
-
-// -- Problem --------------------------------------------------
-// Title      : Kth Largest Element In An Array
-// Category   : Heap Priority Queue
-// Difficulty : Medium
 //
-// APPROACH:
-//   Study the problem, then implement below.
+// QUESTION:
+//   Given an integer array nums and an integer k, return the kth largest
+//   element in the array (the kth largest in sorted order, not the kth
+//   distinct element).
 //
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
+//   Example:
+//     Input : [3,2,1,5,6,4], k=2   Output: 5
+// =============================================================
 
-function solve() {
-    // TODO: implement solution for "Kth Largest Element In An Array"
-}
-
-// -- Tests ----------------------------------------------------
-console.log("Lesson 034: Kth Largest Element In An Array");
+var findKthLargest = function(nums, k) {
+    return nums.slice().sort((a,b) => b-a)[k-1];
+};
+console.log(findKthLargest([3,2,1,5,6,4], 2));

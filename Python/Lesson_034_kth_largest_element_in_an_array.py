@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 034 -- Kth Largest Element In An Array
@@ -8,24 +8,20 @@
 # Difficulty : Medium
 # Study Plan : Day 17
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Kth Largest Element In An Array
-# Category   : Heap Priority Queue
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
+# QUESTION:
+#   Given an integer array nums and an integer k, return the kth largest
+#   element in the array (the kth largest in sorted order, not the kth
+#   distinct element).
 #
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+#   Example:
+#     Input : [3,2,1,5,6,4], k=2   Output: 5
+# =============================================================
 
+import heapq
 class Solution:
-    def solve(self):
-        # TODO: implement solution for "Kth Largest Element In An Array"
-        pass
-
+    def findKthLargest(self, nums, k):
+        return heapq.nlargest(k, nums)[-1]
 
 if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 034: Kth Largest Element In An Array")
+    print(Solution().findKthLargest([3,2,1,5,6,4], 2))  # 5

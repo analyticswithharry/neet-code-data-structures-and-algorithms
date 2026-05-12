@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 020 -- K Closest Points to Origin
@@ -8,21 +8,19 @@
 # Difficulty : Medium
 # Study Plan : Day 10
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : K Closest Points to Origin
-# Category   : Heap Priority Queue
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
+# QUESTION:
+#   Given an array of points where points[i] = [xi, yi] and an integer k,
+#   return the k closest points to the origin (0, 0). Distance is Euclidean.
 #
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+#   Example:
+#     Input : points = [[1,3],[-2,2]], k = 1
+#     Output: [[-2,2]]
+# =============================================================
 
-solve <- function() {
-  # TODO: implement solution for "K Closest Points to Origin"
+kClosest <- function(points, k) {
+    d <- sapply(points, function(p) p[1]^2 + p[2]^2)
+    points[order(d)][1:k]
 }
-
-# -- Tests ----------------------------------------------------
-cat("Lesson 020: K Closest Points to Origin\n")
+print(kClosest(list(c(1,3), c(-2,2)), 1))
+print(kClosest(list(c(3,3), c(5,-1), c(-2,4)), 2))

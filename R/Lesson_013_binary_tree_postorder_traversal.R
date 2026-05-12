@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 013 -- Binary Tree Postorder Traversal
@@ -8,21 +8,19 @@
 # Difficulty : Easy
 # Study Plan : Day 7
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Binary Tree Postorder Traversal
-# Category   : Trees
-# Difficulty : Easy
 #
-# APPROACH:
-#   Study the problem, then implement below.
+# QUESTION:
+#   Given the root of a binary tree, return the postorder
+#   (Left, Right, Root) traversal of its nodes' values.
 #
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+#   Example:
+#     Input : root = [1,null,2,3]
+#     Output: [3, 2, 1]
+# =============================================================
 
-solve <- function() {
-  # TODO: implement solution for "Binary Tree Postorder Traversal"
+postorderTraversal <- function(node) {
+    if (is.null(node)) return(integer(0))
+    c(postorderTraversal(node$left), postorderTraversal(node$right), node$val)
 }
-
-# -- Tests ----------------------------------------------------
-cat("Lesson 013: Binary Tree Postorder Traversal\n")
+root <- list(val=1, left=NULL, right=list(val=2, left=list(val=3, left=NULL, right=NULL), right=NULL))
+print(postorderTraversal(root))  # 3 2 1

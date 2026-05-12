@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 022 -- Valid Parentheses
@@ -8,24 +8,27 @@
 # Difficulty : Easy
 # Study Plan : Day 11
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Valid Parentheses
-# Category   : Stack
-# Difficulty : Easy
 #
-# APPROACH:
-#   Study the problem, then implement below.
+# QUESTION:
+#   Given a string s containing just the characters '(', ')', '{', '}',
+#   '[' and ']', determine if the input string is valid. An input string is
+#   valid if open brackets are closed by the same type of brackets in the
+#   correct order.
 #
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+#   Example:
+#     Input : "()[]{}"   Output: true
+#     Input : "(]"       Output: false
+# =============================================================
 
 class Solution:
-    def solve(self):
-        # TODO: implement solution for "Valid Parentheses"
-        pass
-
+    def isValid(self, s: str) -> bool:
+        m = {')':'(', ']':'[', '}':'{'}
+        st = []
+        for c in s:
+            if c in m:
+                if not st or st.pop() != m[c]: return False
+            else: st.append(c)
+        return not st
 
 if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 022: Valid Parentheses")
+    print(Solution().isValid("()[]{}"), Solution().isValid("(]"))

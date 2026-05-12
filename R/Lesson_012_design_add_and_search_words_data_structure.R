@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 012 -- Design Add And Search Words Data Structure
@@ -8,21 +8,43 @@
 # Difficulty : Medium
 # Study Plan : Day 6
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Design Add And Search Words Data Structure
-# Category   : Tries
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
+# QUESTION:
+#   Design a data structure that supports:
+#     addWord(word)
+#     search(word)  - word may contain '.' which matches any single letter
 #
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+#   Example:
+#     d = WordDictionary(); d.addWord("bad"); d.addWord("dad"); d.addWord("mad")
+#     d.search("pad") -> False
+#     d.search("bad") -> True
+#     d.search(".ad") -> True
+#     d.search("b..") -> True
+# =============================================================
 
-solve <- function() {
-  # TODO: implement solution for "Design Add And Search Words Data Structure"
+new_wd <- function() { e <- new.env(hash=TRUE); e$end <- FALSE; e$ch <- new.env(hash=TRUE); e }
+addWord <- function(d, w) {
+    n <- d
+    for (c in strsplit(w, "")[[1]]) {
+        if (!exists(c, envir=n$ch, inherits=FALSE)) assign(c, new_wd(), envir=n$ch)
+        n <- get(c, envir=n$ch)
+    }
+    n$end <- TRUE
+}
+search_wd <- function(d, w) {
+    chars <- strsplit(w, "")[[1]]
+    dfs <- function(i, n) {
+        if (i > length(chars)) return(n$end)
+        c <- chars[i]
+        if (c == ".") {
+            for (k in ls(n$ch)) if (dfs(i+1, get(k, envir=n$ch))) return(TRUE)
+            return(FALSE)
+        }
+        if (!exists(c, envir=n$ch, inherits=FALSE)) return(FALSE)
+        dfs(i+1, get(c, envir=n$ch))
+    }
+    dfs(1, d)
 }
 
-# -- Tests ----------------------------------------------------
-cat("Lesson 012: Design Add And Search Words Data Structure\n")
+d <- new_wd(); for (w in c("bad","dad","mad")) addWord(d, w)
+print(c(search_wd(d,"pad"), search_wd(d,"bad"), search_wd(d,".ad"), search_wd(d,"b..")))

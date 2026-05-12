@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 023 -- Extra Characters in a String
@@ -8,21 +8,28 @@
 # Difficulty : Medium
 # Study Plan : Day 12
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Extra Characters in a String
-# Category   : Tries
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
+# QUESTION:
+#   Given a string s and a dictionary of words, break s into one or more
+#   non-overlapping substrings such that each substring is in dictionary.
+#   There may be characters in s that are not in any of the substrings.
+#   Return the minimum number of extra characters left over.
 #
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+#   Example:
+#     Input : s = "leetscode", dict = ["leet","code","leetcode"]
+#     Output: 1   (the 's' is extra)
+# =============================================================
 
-solve <- function() {
-  # TODO: implement solution for "Extra Characters in a String"
+minExtraChar <- function(s, dictionary) {
+    words <- dictionary; n <- nchar(s)
+    dp <- integer(n+1)
+    for (i in seq_len(n)) {
+        dp[i+1] <- dp[i] + 1
+        for (j in 0:(i-1)) {
+            sub <- substr(s, j+1, i)
+            if (sub %in% words) dp[i+1] <- min(dp[i+1], dp[j+1])
+        }
+    }
+    dp[n+1]
 }
-
-# -- Tests ----------------------------------------------------
-cat("Lesson 023: Extra Characters in a String\n")
+print(minExtraChar("leetscode", c("leet","code","leetcode")))

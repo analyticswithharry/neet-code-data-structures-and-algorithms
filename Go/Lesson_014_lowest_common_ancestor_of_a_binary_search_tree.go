@@ -2,7 +2,7 @@
 
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 014 -- Lowest Common Ancestor of a Binary Search Tree
@@ -10,27 +10,30 @@
 // Difficulty : Medium
 // Study Plan : Day 7
 // =============================================================
+//
+// QUESTION:
+//   Given a binary search tree (BST), find the lowest common ancestor (LCA)
+//   of two given nodes p and q. Both p and q exist in the BST.
+//
+//   Example:
+//     Input : root=[6,2,8,0,4,7,9,null,null,3,5], p=2, q=8
+//     Output: 6
+// =============================================================
 
 package main
-
 import "fmt"
-
-// -- Problem --------------------------------------------------
-// Title      : Lowest Common Ancestor of a Binary Search Tree
-// Category   : Trees
-// Difficulty : Medium
-//
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
-// TODO: implement solution for "Lowest Common Ancestor of a Binary Search Tree"
-func solve() {
-    // implement here
+type TreeNode struct { Val int; Left, Right *TreeNode }
+func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+    cur := root
+    for cur != nil {
+        if p.Val < cur.Val && q.Val < cur.Val { cur = cur.Left
+        } else if p.Val > cur.Val && q.Val > cur.Val { cur = cur.Right
+        } else { return cur }
+    }
+    return nil
 }
-
 func main() {
-    fmt.Println("Lesson 014: Lowest Common Ancestor of a Binary Search Tree")
+    p := &TreeNode{Val:2}; q := &TreeNode{Val:8}
+    r := &TreeNode{Val:6, Left:p, Right:q}
+    fmt.Println(lowestCommonAncestor(r,p,q).Val)
 }

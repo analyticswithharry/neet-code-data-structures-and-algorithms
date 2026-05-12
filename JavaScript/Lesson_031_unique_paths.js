@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 031 -- Unique Paths
@@ -8,21 +8,19 @@
 // Difficulty : Medium
 // Study Plan : Day 16
 // =============================================================
-
-// -- Problem --------------------------------------------------
-// Title      : Unique Paths
-// Category   : 2-D Dynamic Programming
-// Difficulty : Medium
 //
-// APPROACH:
-//   Study the problem, then implement below.
+// QUESTION:
+//   A robot is on an m x n grid at the top-left. It can only move right or
+//   down. How many possible unique paths are there to reach the bottom-right?
 //
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
+//   Example:
+//     Input : m=3, n=7  Output: 28
+//     Input : m=3, n=2  Output: 3
+// =============================================================
 
-function solve() {
-    // TODO: implement solution for "Unique Paths"
-}
-
-// -- Tests ----------------------------------------------------
-console.log("Lesson 031: Unique Paths");
+var uniquePaths = function(m, n) {
+    const dp = new Array(n).fill(1);
+    for (let i = 1; i < m; i++) for (let j = 1; j < n; j++) dp[j] += dp[j-1];
+    return dp[n-1];
+};
+console.log(uniquePaths(3,7), uniquePaths(3,2));

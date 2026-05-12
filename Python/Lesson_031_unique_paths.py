@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 031 -- Unique Paths
@@ -8,24 +8,22 @@
 # Difficulty : Medium
 # Study Plan : Day 16
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Unique Paths
-# Category   : 2-D Dynamic Programming
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
+# QUESTION:
+#   A robot is on an m x n grid at the top-left. It can only move right or
+#   down. How many possible unique paths are there to reach the bottom-right?
 #
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+#   Example:
+#     Input : m=3, n=7  Output: 28
+#     Input : m=3, n=2  Output: 3
+# =============================================================
 
 class Solution:
-    def solve(self):
-        # TODO: implement solution for "Unique Paths"
-        pass
-
+    def uniquePaths(self, m, n):
+        dp = [1] * n
+        for _ in range(1, m):
+            for j in range(1, n): dp[j] += dp[j-1]
+        return dp[-1]
 
 if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 031: Unique Paths")
+    print(Solution().uniquePaths(3,7), Solution().uniquePaths(3,2))

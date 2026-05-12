@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 031 -- Unique Paths
@@ -8,27 +8,24 @@
 // Difficulty : Medium
 // Study Plan : Day 16
 // =============================================================
-
-// -- Problem --------------------------------------------------
-// Title      : Unique Paths
-// Category   : 2-D Dynamic Programming
-// Difficulty : Medium
 //
-// APPROACH:
-//   Study the problem, then implement below.
+// QUESTION:
+//   A robot is on an m x n grid at the top-left. It can only move right or
+//   down. How many possible unique paths are there to reach the bottom-right?
 //
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
+//   Example:
+//     Input : m=3, n=7  Output: 28
+//     Input : m=3, n=2  Output: 3
+// =============================================================
 
 public class Lesson031_UniquePaths {
-
-    // TODO: implement solution for "Unique Paths"
-    public void solve() {
-        // implement here
+    public int uniquePaths(int m, int n) {
+        int[] dp = new int[n]; java.util.Arrays.fill(dp, 1);
+        for (int i = 1; i < m; i++) for (int j = 1; j < n; j++) dp[j] += dp[j-1];
+        return dp[n-1];
     }
-
     public static void main(String[] args) {
-        Lesson031_UniquePaths sol = new Lesson031_UniquePaths();
-        System.out.println("Lesson 031: Unique Paths");
+        Lesson031_UniquePaths s = new Lesson031_UniquePaths();
+        System.out.println(s.uniquePaths(3,7) + " " + s.uniquePaths(3,2));
     }
 }

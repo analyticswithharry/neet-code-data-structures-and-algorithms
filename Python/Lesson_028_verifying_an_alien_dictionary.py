@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 028 -- Verifying An Alien Dictionary
@@ -8,24 +8,29 @@
 # Difficulty : Easy
 # Study Plan : Day 14
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Verifying An Alien Dictionary
-# Category   : Graphs
-# Difficulty : Easy
 #
-# APPROACH:
-#   Study the problem, then implement below.
+# QUESTION:
+#   In an alien language, surprisingly, they also use English lowercase
+#   letters but possibly in a different order. Given a sequence of words
+#   written in the alien language and the order of the alphabet, return true
+#   iff the given words are sorted lexicographically in this alien language.
 #
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+#   Example:
+#     Input : words=["hello","leetcode"], order="hlabcdefgijkmnopqrstuvwxyz"
+#     Output: true
+# =============================================================
 
 class Solution:
-    def solve(self):
-        # TODO: implement solution for "Verifying An Alien Dictionary"
-        pass
-
+    def isAlienSorted(self, words, order):
+        idx = {c: i for i, c in enumerate(order)}
+        for a, b in zip(words, words[1:]):
+            for ca, cb in zip(a, b):
+                if idx[ca] != idx[cb]:
+                    if idx[ca] > idx[cb]: return False
+                    break
+            else:
+                if len(a) > len(b): return False
+        return True
 
 if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 028: Verifying An Alien Dictionary")
+    print(Solution().isAlienSorted(["hello","leetcode"], "hlabcdefgijkmnopqrstuvwxyz"))
