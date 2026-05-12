@@ -1,0 +1,34 @@
+// =============================================================
+// MIT License | @analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry2026
+// YouTube : Analytics with Harry
+// =============================================================
+// Lesson     : 219 -- Find K Closest Elements
+// Category   : Sliding Window
+// Difficulty : Medium
+// Study Plan : Day 110
+// =============================================================
+
+// -- Problem --------------------------------------------------
+// Title      : Find K Closest Elements
+// Category   : Sliding Window
+// Difficulty : Medium
+//
+// APPROACH:
+//   Study the problem, then implement below.
+//
+// COMPLEXITY: Time O(?) | Space O(?)
+// --------------------------------------------------------------
+
+public class Lesson219_FindKClosestElements {
+
+    // TODO: implement solution for "Find K Closest Elements"
+    public void solve() {
+        // implement here
+    }
+
+    public static void main(String[] args) {
+        Lesson219_FindKClosestElements sol = new Lesson219_FindKClosestElements();
+        System.out.println("Lesson 219: Find K Closest Elements");
+    }
+}
