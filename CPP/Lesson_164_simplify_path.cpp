@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 164 -- Simplify Path
@@ -8,36 +8,24 @@
 // Difficulty : Medium
 // Study Plan : Day 82
 // =============================================================
-
+//
+// QUESTION:
+//   Given a Unix-style absolute path, return the simplified canonical path.
+// =============================================================
 #include <vector>
 #include <string>
 #include <iostream>
 #include <stack>
 #include <queue>
+#include <unordered_map>
+#include <unordered_set>
+#include <map>
+#include <set>
 #include <algorithm>
+#include <climits>
+#include <numeric>
+#include <functional>
+#include <cmath>
 using namespace std;
-
-// -- Problem --------------------------------------------------
-// Title      : Simplify Path
-// Category   : Stack
-// Difficulty : Medium
-//
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
-class Solution {
-public:
-    // TODO: implement solution for "Simplify Path"
-    void solve() {
-        // implement here
-    }
-};
-
-int main() {
-    Solution sol;
-    cout << "Lesson 164: Simplify Path" << endl;
-    return 0;
-}
+string simplify(string p){vector<string> st;string cur;stringstream ss(p);string part;while(getline(ss,part,'/')){if(part==""||part==".")continue;if(part==".."){if(!st.empty())st.pop_back();}else st.push_back(part);}string out;for(auto& s:st) out+="/"+s;return out.empty()?"/":out;}
+int main(){cout<<simplify("/a/./b/../../c/")<<"\n"<<simplify("/home//foo/")<<"\n";}

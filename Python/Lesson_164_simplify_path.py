@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 164 -- Simplify Path
@@ -8,24 +8,19 @@
 # Difficulty : Medium
 # Study Plan : Day 82
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Simplify Path
-# Category   : Stack
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Given a Unix-style absolute path, return the simplified canonical path.
+# =============================================================
+def simplify(p):
+    st=[]
+    for part in p.split('/'):
+        if part=='' or part=='.': continue
+        if part=='..':
+            if st: st.pop()
+        else: st.append(part)
+    return '/'+'/'.join(st)
 
-class Solution:
-    def solve(self):
-        # TODO: implement solution for "Simplify Path"
-        pass
-
-
-if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 164: Simplify Path")
+if __name__=="__main__":
+    print(simplify("/a/./b/../../c/"))
+    print(simplify("/home//foo/"))

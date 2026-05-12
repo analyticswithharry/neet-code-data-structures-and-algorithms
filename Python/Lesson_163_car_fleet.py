@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 163 -- Car Fleet
@@ -8,24 +8,18 @@
 # Difficulty : Medium
 # Study Plan : Day 82
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Car Fleet
-# Category   : Stack
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Cars at positions head to target with given speeds. Cars cannot pass; slower car ahead caps faster car behind. Return number of fleets that arrive.
+# =============================================================
+def carFleet(target,pos,sp):
+    cars=sorted(zip(pos,sp),reverse=True)
+    fleets=0; lastT=0.0
+    for p,s in cars:
+        t=(target-p)/s
+        if t>lastT:
+            fleets+=1; lastT=t
+    return fleets
 
-class Solution:
-    def solve(self):
-        # TODO: implement solution for "Car Fleet"
-        pass
-
-
-if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 163: Car Fleet")
+if __name__=="__main__":
+    print(carFleet(12,[10,8,0,5,3],[2,4,1,1,3]))

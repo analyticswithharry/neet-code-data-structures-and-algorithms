@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 177 -- Word Break
@@ -8,24 +8,19 @@
 # Difficulty : Medium
 # Study Plan : Day 89
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Word Break
-# Category   : 1-D Dynamic Programming
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Determine if string s can be segmented into words from the given dictionary.
+# =============================================================
+def wordBreak(s,wd):
+    w=set(wd); n=len(s); dp=[False]*(n+1); dp[0]=True
+    for i in range(1,n+1):
+        for j in range(i):
+            if dp[j] and s[j:i] in w:
+                dp[i]=True; break
+    return dp[n]
 
-class Solution:
-    def solve(self):
-        # TODO: implement solution for "Word Break"
-        pass
-
-
-if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 177: Word Break")
+if __name__=="__main__":
+    print(wordBreak("leetcode",["leet","code"]))
+    print(wordBreak("applepenapple",["apple","pen"]))
+    print(wordBreak("catsandog",["cats","dog","sand","and","cat"]))

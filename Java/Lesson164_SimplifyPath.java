@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 164 -- Simplify Path
@@ -8,27 +8,12 @@
 // Difficulty : Medium
 // Study Plan : Day 82
 // =============================================================
-
-// -- Problem --------------------------------------------------
-// Title      : Simplify Path
-// Category   : Stack
-// Difficulty : Medium
 //
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
-public class Lesson164_SimplifyPath {
-
-    // TODO: implement solution for "Simplify Path"
-    public void solve() {
-        // implement here
-    }
-
-    public static void main(String[] args) {
-        Lesson164_SimplifyPath sol = new Lesson164_SimplifyPath();
-        System.out.println("Lesson 164: Simplify Path");
-    }
+// QUESTION:
+//   Given a Unix-style absolute path, return the simplified canonical path.
+// =============================================================
+import java.util.*;
+public class Lesson164_SimplifyPath{
+  static String simplify(String p){Deque<String> st=new ArrayDeque<>();for(String part:p.split("/")){if(part.isEmpty()||part.equals("."))continue;if(part.equals("..")){if(!st.isEmpty())st.pop();}else st.push(part);}StringBuilder sb=new StringBuilder();Iterator<String> it=st.descendingIterator();while(it.hasNext()){sb.append('/').append(it.next());}return sb.length()==0?"/":sb.toString();}
+  public static void main(String[]a){System.out.println(simplify("/a/./b/../../c/"));System.out.println(simplify("/home//foo/"));}
 }

@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 166 -- Jump Game II
@@ -8,36 +8,24 @@
 // Difficulty : Medium
 // Study Plan : Day 83
 // =============================================================
-
+//
+// QUESTION:
+//   Return the minimum number of jumps to reach the last index. Assume reachable.
+// =============================================================
 #include <vector>
 #include <string>
 #include <iostream>
 #include <stack>
 #include <queue>
+#include <unordered_map>
+#include <unordered_set>
+#include <map>
+#include <set>
 #include <algorithm>
+#include <climits>
+#include <numeric>
+#include <functional>
+#include <cmath>
 using namespace std;
-
-// -- Problem --------------------------------------------------
-// Title      : Jump Game II
-// Category   : Greedy
-// Difficulty : Medium
-//
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
-class Solution {
-public:
-    // TODO: implement solution for "Jump Game II"
-    void solve() {
-        // implement here
-    }
-};
-
-int main() {
-    Solution sol;
-    cout << "Lesson 166: Jump Game II" << endl;
-    return 0;
-}
+int jump(vector<int> a){int j=0,cur=0,far=0;for(int i=0;i<(int)a.size()-1;i++){far=max(far,i+a[i]);if(i==cur){j++;cur=far;}}return j;}
+int main(){cout<<jump({2,3,1,1,4})<<"\n"<<jump({2,3,0,1,4})<<"\n";}

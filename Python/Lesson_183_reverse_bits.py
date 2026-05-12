@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 183 -- Reverse Bits
@@ -8,24 +8,15 @@
 # Difficulty : Easy
 # Study Plan : Day 92
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Reverse Bits
-# Category   : Bit Manipulation
-# Difficulty : Easy
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Reverse bits of a given 32-bit unsigned integer.
+# =============================================================
+def reverseBits(n):
+    r=0
+    for _ in range(32):
+        r=(r<<1)|(n&1); n>>=1
+    return r
 
-class Solution:
-    def solve(self):
-        # TODO: implement solution for "Reverse Bits"
-        pass
-
-
-if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 183: Reverse Bits")
+if __name__=="__main__":
+    print(reverseBits(0b00000010100101000001111010011100))

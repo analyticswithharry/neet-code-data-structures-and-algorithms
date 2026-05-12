@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 170 -- Target Sum
@@ -8,36 +8,24 @@
 // Difficulty : Medium
 // Study Plan : Day 85
 // =============================================================
-
+//
+// QUESTION:
+//   Assign + or - to each number so the sum equals target. Return number of ways.
+// =============================================================
 #include <vector>
 #include <string>
 #include <iostream>
 #include <stack>
 #include <queue>
+#include <unordered_map>
+#include <unordered_set>
+#include <map>
+#include <set>
 #include <algorithm>
+#include <climits>
+#include <numeric>
+#include <functional>
+#include <cmath>
 using namespace std;
-
-// -- Problem --------------------------------------------------
-// Title      : Target Sum
-// Category   : 2-D Dynamic Programming
-// Difficulty : Medium
-//
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
-class Solution {
-public:
-    // TODO: implement solution for "Target Sum"
-    void solve() {
-        // implement here
-    }
-};
-
-int main() {
-    Solution sol;
-    cout << "Lesson 170: Target Sum" << endl;
-    return 0;
-}
+int findTargetSumWays(vector<int> nums,int target){unordered_map<int,int> dp;dp[0]=1;for(int n:nums){unordered_map<int,int> nd;for(auto& p:dp){nd[p.first+n]+=p.second;nd[p.first-n]+=p.second;}dp=nd;}return dp.count(target)?dp[target]:0;}
+int main(){cout<<findTargetSumWays({1,1,1,1,1},3)<<"\n";}
