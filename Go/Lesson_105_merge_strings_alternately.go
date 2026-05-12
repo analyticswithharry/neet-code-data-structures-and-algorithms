@@ -2,7 +2,7 @@
 
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 105 -- Merge Strings Alternately
@@ -10,27 +10,20 @@
 // Difficulty : Easy
 // Study Plan : Day 53
 // =============================================================
+//
+// QUESTION:
+//   Given two strings, merge them by adding letters in alternating order, starting with word1. If one is longer, append the rest.
+// =============================================================
 
 package main
-
 import "fmt"
-
-// -- Problem --------------------------------------------------
-// Title      : Merge Strings Alternately
-// Category   : Two Pointers
-// Difficulty : Easy
-//
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
-// TODO: implement solution for "Merge Strings Alternately"
-func solve() {
-    // implement here
+func mergeAlternately(a, b string) string {
+    r := []byte{}; i := 0
+    for i < len(a) || i < len(b) {
+        if i < len(a) { r = append(r, a[i]) }
+        if i < len(b) { r = append(r, b[i]) }
+        i++
+    }
+    return string(r)
 }
-
-func main() {
-    fmt.Println("Lesson 105: Merge Strings Alternately")
-}
+func main(){ fmt.Println(mergeAlternately("abc","pqr"), mergeAlternately("ab","pqrs")) }

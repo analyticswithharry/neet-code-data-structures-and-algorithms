@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 103 -- Merge Intervals
@@ -8,24 +8,18 @@
 # Difficulty : Medium
 # Study Plan : Day 52
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Merge Intervals
-# Category   : Intervals
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Given an array of intervals where intervals[i] = [start, end], merge all overlapping intervals.
+# =============================================================
 
 class Solution:
-    def solve(self):
-        # TODO: implement solution for "Merge Intervals"
-        pass
-
+    def merge(self, intervals):
+        intervals.sort(key=lambda x: x[0]); res=[]
+        for s,e in intervals:
+            if res and s <= res[-1][1]: res[-1][1]=max(res[-1][1], e)
+            else: res.append([s,e])
+        return res
 
 if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 103: Merge Intervals")
+    print(Solution().merge([[1,3],[2,6],[8,10],[15,18]]))

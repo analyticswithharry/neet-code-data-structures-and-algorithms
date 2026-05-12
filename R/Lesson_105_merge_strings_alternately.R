@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 105 -- Merge Strings Alternately
@@ -8,21 +8,18 @@
 # Difficulty : Easy
 # Study Plan : Day 53
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Merge Strings Alternately
-# Category   : Two Pointers
-# Difficulty : Easy
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Given two strings, merge them by adding letters in alternating order, starting with word1. If one is longer, append the rest.
+# =============================================================
 
-solve <- function() {
-  # TODO: implement solution for "Merge Strings Alternately"
+mergeAlternately <- function(a, b){
+  ca <- strsplit(a,"")[[1]]; cb <- strsplit(b,"")[[1]]
+  n <- max(length(ca), length(cb)); r <- c()
+  for (i in 1:n){
+    if (i <= length(ca)) r <- c(r, ca[i])
+    if (i <= length(cb)) r <- c(r, cb[i])
+  }
+  paste(r, collapse="")
 }
-
-# -- Tests ----------------------------------------------------
-cat("Lesson 105: Merge Strings Alternately\n")
+print(mergeAlternately("abc","pqr")); print(mergeAlternately("ab","pqrs"))

@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 087 -- Subsets II
@@ -8,21 +8,23 @@
 # Difficulty : Medium
 # Study Plan : Day 44
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Subsets II
-# Category   : Backtracking
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Given an integer array nums that may contain duplicates, return all possible subsets (the power set), without duplicates.
+#   Example: [1,2,2] -> [[],[1],[1,2],[1,2,2],[2],[2,2]].
+# =============================================================
 
-solve <- function() {
-  # TODO: implement solution for "Subsets II"
+subsetsWithDup <- function(nums){
+  nums <- sort(nums); res <- list(); cur <- c()
+  bt <- function(i){
+    res[[length(res)+1]] <<- cur
+    j <- i
+    while (j <= length(nums)){
+      if (j > i && nums[j] == nums[j-1]) { j <- j+1; next }
+      cur <<- c(cur, nums[j]); bt(j+1); cur <<- cur[-length(cur)]
+      j <- j+1
+    }
+  }
+  bt(1); res
 }
-
-# -- Tests ----------------------------------------------------
-cat("Lesson 087: Subsets II\n")
+print(subsetsWithDup(c(1,2,2)))

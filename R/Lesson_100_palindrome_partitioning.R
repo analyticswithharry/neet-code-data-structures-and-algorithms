@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 100 -- Palindrome Partitioning
@@ -8,21 +8,20 @@
 # Difficulty : Medium
 # Study Plan : Day 50
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Palindrome Partitioning
-# Category   : Backtracking
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Partition string s such that every substring is a palindrome. Return all possible partitions.
+# =============================================================
 
-solve <- function() {
-  # TODO: implement solution for "Palindrome Partitioning"
+partition <- function(s){
+  res <- list(); cur <- c()
+  isPal <- function(x){ y <- strsplit(x,"")[[1]]; all(y == rev(y)) }
+  bt <- function(i){
+    if (i > nchar(s)){ res[[length(res)+1]] <<- cur; return() }
+    for (j in i:nchar(s)){
+      sub <- substr(s, i, j); if (isPal(sub)){ cur <<- c(cur, sub); bt(j+1); cur <<- cur[-length(cur)] }
+    }
+  }
+  bt(1); res
 }
-
-# -- Tests ----------------------------------------------------
-cat("Lesson 100: Palindrome Partitioning\n")
+print(partition("aab"))

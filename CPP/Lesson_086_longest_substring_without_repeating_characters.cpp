@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 086 -- Longest Substring Without Repeating Characters
@@ -8,36 +8,35 @@
 // Difficulty : Medium
 // Study Plan : Day 43
 // =============================================================
+//
+// QUESTION:
+//   Given a string s, find the length of the longest substring without repeating characters.
+//   Example: 'abcabcbb' -> 3 ('abc'); 'bbbbb' -> 1; 'pwwkew' -> 3.
+// =============================================================
 
 #include <vector>
 #include <string>
 #include <iostream>
 #include <stack>
 #include <queue>
+#include <unordered_map>
+#include <unordered_set>
+#include <map>
+#include <set>
 #include <algorithm>
+#include <climits>
+#include <numeric>
+#include <functional>
+#include <cmath>
 using namespace std;
-
-// -- Problem --------------------------------------------------
-// Title      : Longest Substring Without Repeating Characters
-// Category   : Sliding Window
-// Difficulty : Medium
-//
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
-class Solution {
-public:
-    // TODO: implement solution for "Longest Substring Without Repeating Characters"
-    void solve() {
-        // implement here
+class Solution { public:
+    int lengthOfLongestSubstring(string s){
+        unordered_map<char,int> m; int l=0, best=0;
+        for (int r=0;r<(int)s.size();r++){
+            char c=s[r];
+            if (m.count(c) && m[c]>=l) l = m[c]+1;
+            m[c]=r; best = max(best, r-l+1);
+        } return best;
     }
 };
-
-int main() {
-    Solution sol;
-    cout << "Lesson 086: Longest Substring Without Repeating Characters" << endl;
-    return 0;
-}
+int main(){ Solution s; cout<<s.lengthOfLongestSubstring("abcabcbb")<<" "<<s.lengthOfLongestSubstring("pwwkew")<<endl; }

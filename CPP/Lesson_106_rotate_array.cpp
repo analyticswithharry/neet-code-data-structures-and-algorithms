@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 106 -- Rotate Array
@@ -8,36 +8,33 @@
 // Difficulty : Medium
 // Study Plan : Day 53
 // =============================================================
+//
+// QUESTION:
+//   Rotate the array to the right by k steps in-place.
+// =============================================================
 
 #include <vector>
 #include <string>
 #include <iostream>
 #include <stack>
 #include <queue>
+#include <unordered_map>
+#include <unordered_set>
+#include <map>
+#include <set>
 #include <algorithm>
+#include <climits>
+#include <numeric>
+#include <functional>
+#include <cmath>
 using namespace std;
-
-// -- Problem --------------------------------------------------
-// Title      : Rotate Array
-// Category   : Two Pointers
-// Difficulty : Medium
-//
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
-class Solution {
-public:
-    // TODO: implement solution for "Rotate Array"
-    void solve() {
-        // implement here
+class Solution { public:
+    void rotate(vector<int>& nums, int k){
+        int n=nums.size(); k%=n;
+        reverse(nums.begin(), nums.end());
+        reverse(nums.begin(), nums.begin()+k);
+        reverse(nums.begin()+k, nums.end());
     }
 };
-
-int main() {
-    Solution sol;
-    cout << "Lesson 106: Rotate Array" << endl;
-    return 0;
-}
+int main(){ vector<int> a={1,2,3,4,5,6,7}; Solution().rotate(a, 3);
+    for (int x: a) cout<<x<<" "; cout<<endl; }

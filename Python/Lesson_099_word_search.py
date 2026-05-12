@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 099 -- Word Search
@@ -8,24 +8,24 @@
 # Difficulty : Medium
 # Study Plan : Day 50
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Word Search
-# Category   : Backtracking
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Given an m x n board and a word, return true if the word exists by sequentially adjacent cells (no reuse).
+# =============================================================
 
 class Solution:
-    def solve(self):
-        # TODO: implement solution for "Word Search"
-        pass
-
+    def exist(self, board, word):
+        R,C = len(board), len(board[0])
+        def dfs(r,c,i):
+            if i==len(word): return True
+            if r<0 or r>=R or c<0 or c>=C or board[r][c]!=word[i]: return False
+            tmp=board[r][c]; board[r][c]='#'
+            ok = dfs(r+1,c,i+1) or dfs(r-1,c,i+1) or dfs(r,c+1,i+1) or dfs(r,c-1,i+1)
+            board[r][c]=tmp; return ok
+        for r in range(R):
+            for c in range(C):
+                if dfs(r,c,0): return True
+        return False
 
 if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 099: Word Search")
+    print(Solution().exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED"))

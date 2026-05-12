@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 096 -- Rotate Image
@@ -8,24 +8,17 @@
 # Difficulty : Medium
 # Study Plan : Day 48
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Rotate Image
-# Category   : Math and Geometry
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Rotate an n x n 2D matrix 90 degrees clockwise in-place.
+# =============================================================
 
 class Solution:
-    def solve(self):
-        # TODO: implement solution for "Rotate Image"
-        pass
-
+    def rotate(self, m):
+        n=len(m)
+        for i in range(n):
+            for j in range(i+1,n): m[i][j], m[j][i] = m[j][i], m[i][j]
+        for row in m: row.reverse()
 
 if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 096: Rotate Image")
+    m=[[1,2,3],[4,5,6],[7,8,9]]; Solution().rotate(m); print(m)

@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 088 -- Permutations II
@@ -8,24 +8,23 @@
 # Difficulty : Medium
 # Study Plan : Day 44
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Permutations II
-# Category   : Backtracking
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Given a collection nums of numbers that might contain duplicates, return all possible unique permutations.
+#   Example: [1,1,2] -> [[1,1,2],[1,2,1],[2,1,1]].
+# =============================================================
 
 class Solution:
-    def solve(self):
-        # TODO: implement solution for "Permutations II"
-        pass
-
+    def permuteUnique(self, nums):
+        nums.sort(); res=[]; used=[False]*len(nums); cur=[]
+        def bt():
+            if len(cur)==len(nums): res.append(cur[:]); return
+            for i in range(len(nums)):
+                if used[i]: continue
+                if i>0 and nums[i]==nums[i-1] and not used[i-1]: continue
+                used[i]=True; cur.append(nums[i]); bt()
+                cur.pop(); used[i]=False
+        bt(); return res
 
 if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 088: Permutations II")
+    print(Solution().permuteUnique([1,1,2]))

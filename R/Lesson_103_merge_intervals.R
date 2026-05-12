@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 103 -- Merge Intervals
@@ -8,21 +8,19 @@
 # Difficulty : Medium
 # Study Plan : Day 52
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Merge Intervals
-# Category   : Intervals
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Given an array of intervals where intervals[i] = [start, end], merge all overlapping intervals.
+# =============================================================
 
-solve <- function() {
-  # TODO: implement solution for "Merge Intervals"
+mergeIntervals <- function(intervals){
+  intervals <- intervals[order(sapply(intervals, function(x) x[1]))]
+  res <- list()
+  for (x in intervals){
+    n <- length(res)
+    if (n > 0 && x[1] <= res[[n]][2]) res[[n]][2] <- max(res[[n]][2], x[2])
+    else res[[length(res)+1]] <- x
+  }
+  res
 }
-
-# -- Tests ----------------------------------------------------
-cat("Lesson 103: Merge Intervals\n")
+print(mergeIntervals(list(c(1,3),c(2,6),c(8,10),c(15,18))))

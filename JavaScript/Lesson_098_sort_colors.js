@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 098 -- Sort Colors
@@ -8,21 +8,17 @@
 // Difficulty : Medium
 // Study Plan : Day 49
 // =============================================================
-
-// -- Problem --------------------------------------------------
-// Title      : Sort Colors
-// Category   : Arrays and Hashing
-// Difficulty : Medium
 //
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
+// QUESTION:
+//   Sort an array containing only 0, 1, 2 in-place (Dutch national flag).
+// =============================================================
 
-function solve() {
-    // TODO: implement solution for "Sort Colors"
-}
-
-// -- Tests ----------------------------------------------------
-console.log("Lesson 098: Sort Colors");
+var sortColors = function(nums){
+  let l=0, m=0, r=nums.length-1;
+  while (m<=r){
+    if (nums[m]===0){ [nums[l],nums[m]]=[nums[m],nums[l]]; l++; m++; }
+    else if (nums[m]===2){ [nums[r],nums[m]]=[nums[m],nums[r]]; r--; }
+    else m++;
+  }
+};
+const a=[2,0,2,1,1,0]; sortColors(a); console.log(JSON.stringify(a));

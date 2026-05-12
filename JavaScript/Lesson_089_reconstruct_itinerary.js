@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 089 -- Reconstruct Itinerary
@@ -8,21 +8,19 @@
 // Difficulty : Hard
 // Study Plan : Day 45
 // =============================================================
-
-// -- Problem --------------------------------------------------
-// Title      : Reconstruct Itinerary
-// Category   : Advanced Graphs
-// Difficulty : Hard
 //
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
+// QUESTION:
+//   Given a list of airline tickets [from,to], reconstruct the itinerary in order, starting from 'JFK'. If multiple valid, return the lexicographically smallest one.
+// =============================================================
 
-function solve() {
-    // TODO: implement solution for "Reconstruct Itinerary"
-}
-
-// -- Tests ----------------------------------------------------
-console.log("Lesson 089: Reconstruct Itinerary");
+var findItinerary = function(tickets){
+  const g={}; for (const [a,b] of tickets){ (g[a]=g[a]||[]).push(b); }
+  for (const k in g) g[k].sort().reverse();
+  const st=["JFK"], res=[];
+  while (st.length){
+    while (g[st[st.length-1]] && g[st[st.length-1]].length) st.push(g[st[st.length-1]].pop());
+    res.push(st.pop());
+  }
+  return res.reverse();
+};
+console.log(findItinerary([["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","SFO"]]));

@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 096 -- Rotate Image
@@ -8,21 +8,14 @@
 # Difficulty : Medium
 # Study Plan : Day 48
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Rotate Image
-# Category   : Math and Geometry
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Rotate an n x n 2D matrix 90 degrees clockwise in-place.
+# =============================================================
 
-solve <- function() {
-  # TODO: implement solution for "Rotate Image"
+rotate <- function(m){
+  n <- nrow(m); res <- matrix(0, n, n)
+  for (i in 1:n) for (j in 1:n) res[i, n-j+1] <- m[j, i]
+  res
 }
-
-# -- Tests ----------------------------------------------------
-cat("Lesson 096: Rotate Image\n")
+print(rotate(matrix(1:9, 3, 3, byrow=TRUE)))
