@@ -3,17 +3,16 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
-// Category   : Binary Search
+// Lesson     : 051 -- Generate Parentheses
+// Category   : Stack
 // Difficulty : Medium
-// Study Plan : Day 28
+// Study Plan : Day 25
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Given n, return all valid combinations of n pairs of parentheses.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: n=3 -> ["((()))","(()())","(())()","()(())","()()()"]
 // =============================================================
 
 #include <vector>
@@ -32,16 +31,14 @@
 #include <cmath>
 using namespace std;
 class Solution {
+    void bt(vector<string>& r, string cur, int o, int c, int n) {
+        if ((int)cur.size()==2*n) { r.push_back(cur); return; }
+        if (o<n) bt(r, cur+"(", o+1, c, n);
+        if (c<o) bt(r, cur+")", o, c+1, n);
+    }
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
-        while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
-        }
-        return l;
+    vector<string> generateParenthesis(int n) {
+        vector<string> r; bt(r, "", 0, 0, n); return r;
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ for (auto& s: Solution().generateParenthesis(3)) cout<<s<<" "; cout<<endl; }

@@ -3,17 +3,17 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
-// Category   : Binary Search
-// Difficulty : Medium
-// Study Plan : Day 28
+// Lesson     : 041 -- Valid Palindrome
+// Category   : Two Pointers
+// Difficulty : Easy
+// Study Plan : Day 20
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Return true if s is a palindrome considering only alphanumeric chars
+//   and ignoring case.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: "A man, a plan, a canal: Panama" -> true
 // =============================================================
 
 #include <vector>
@@ -33,15 +33,15 @@
 using namespace std;
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
-        while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
+    bool isPalindrome(string s) {
+        int i=0, j=s.size()-1;
+        while (i<j) {
+            while (i<j && !isalnum((unsigned char)s[i])) i++;
+            while (i<j && !isalnum((unsigned char)s[j])) j--;
+            if (tolower((unsigned char)s[i]) != tolower((unsigned char)s[j])) return false;
+            i++; j--;
         }
-        return l;
+        return true;
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ Solution s; cout<<s.isPalindrome("A man, a plan, a canal: Panama")<<" "<<s.isPalindrome("race a car")<<endl; }

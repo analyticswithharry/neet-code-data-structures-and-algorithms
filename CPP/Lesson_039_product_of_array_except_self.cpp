@@ -3,17 +3,17 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
-// Category   : Binary Search
+// Lesson     : 039 -- Product of Array Except Self
+// Category   : Arrays and Hashing
 // Difficulty : Medium
-// Study Plan : Day 28
+// Study Plan : Day 19
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Given nums, return an array where answer[i] is the product of all elements
+//   except nums[i]. Must run in O(n) without division.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: [1,2,3,4] -> [24,12,8,6]
 // =============================================================
 
 #include <vector>
@@ -33,15 +33,13 @@
 using namespace std;
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
-        while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
-        }
-        return l;
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n = nums.size(); vector<int> r(n,1);
+        int left = 1;
+        for (int i=0;i<n;i++){ r[i]=left; left*=nums[i]; }
+        int right = 1;
+        for (int i=n-1;i>=0;i--){ r[i]*=right; right*=nums[i]; }
+        return r;
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ vector<int> v={1,2,3,4}; for (int x: Solution().productExceptSelf(v)) cout<<x<<" "; cout<<endl; }

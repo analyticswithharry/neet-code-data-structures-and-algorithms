@@ -3,17 +3,16 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
+// Lesson     : 057 -- Find Minimum in Rotated Sorted Array
 // Category   : Binary Search
 // Difficulty : Medium
 // Study Plan : Day 28
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Given a rotated sorted array of unique elements, return its minimum.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: [3,4,5,1,2] -> 1
 // =============================================================
 
 #include <vector>
@@ -33,15 +32,13 @@
 using namespace std;
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
+    int findMin(vector<int>& nums) {
+        int l = 0, r = nums.size() - 1;
         while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
+            int mid = (l+r)/2;
+            if (nums[mid] > nums[r]) l = mid+1; else r = mid;
         }
-        return l;
+        return nums[l];
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ vector<int> v={3,4,5,1,2}, w={4,5,6,7,0,1,2}; cout<<Solution().findMin(v)<<" "<<Solution().findMin(w)<<endl; }

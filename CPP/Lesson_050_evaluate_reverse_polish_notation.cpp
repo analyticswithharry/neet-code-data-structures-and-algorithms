@@ -3,17 +3,16 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
-// Category   : Binary Search
+// Lesson     : 050 -- Evaluate Reverse Polish Notation
+// Category   : Stack
 // Difficulty : Medium
-// Study Plan : Day 28
+// Study Plan : Day 25
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Evaluate an arithmetic expression in Reverse Polish Notation.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: ["2","1","+","3","*"] -> 9
 // =============================================================
 
 #include <vector>
@@ -33,15 +32,18 @@
 using namespace std;
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
-        while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
+    int evalRPN(vector<string>& tokens) {
+        stack<int> st;
+        for (auto& t: tokens) {
+            if (t=="+"||t=="-"||t=="*"||t=="/") {
+                int b = st.top(); st.pop(); int a = st.top(); st.pop();
+                if (t=="+") st.push(a+b);
+                else if (t=="-") st.push(a-b);
+                else if (t=="*") st.push(a*b);
+                else st.push(a/b);
+            } else st.push(stoi(t));
         }
-        return l;
+        return st.top();
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ vector<string> v={"2","1","+","3","*"}; cout<<Solution().evalRPN(v)<<endl; }

@@ -3,17 +3,17 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
-// Category   : Binary Search
+// Lesson     : 043 -- Container With Most Water
+// Category   : Two Pointers
 // Difficulty : Medium
-// Study Plan : Day 28
+// Study Plan : Day 21
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Given heights, find two lines that with the x-axis form a container
+//   holding the most water. Return the max area.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: [1,8,6,2,5,4,8,3,7] -> 49
 // =============================================================
 
 #include <vector>
@@ -33,15 +33,13 @@
 using namespace std;
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
-        while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
+    int maxArea(vector<int>& h) {
+        int i=0, j=h.size()-1, best=0;
+        while (i<j) {
+            best = max(best, (j-i)*min(h[i],h[j]));
+            if (h[i]<h[j]) i++; else j--;
         }
-        return l;
+        return best;
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ vector<int> v={1,8,6,2,5,4,8,3,7}; cout<<Solution().maxArea(v)<<endl; }

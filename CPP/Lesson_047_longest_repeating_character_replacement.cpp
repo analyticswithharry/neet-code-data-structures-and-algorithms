@@ -3,17 +3,17 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
-// Category   : Binary Search
+// Lesson     : 047 -- Longest Repeating Character Replacement
+// Category   : Sliding Window
 // Difficulty : Medium
-// Study Plan : Day 28
+// Study Plan : Day 23
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Given a string s and integer k, you can change at most k characters.
+//   Return length of the longest substring with all same characters.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: s="AABABBA", k=1 -> 4
 // =============================================================
 
 #include <vector>
@@ -33,15 +33,15 @@
 using namespace std;
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
-        while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
+    int characterReplacement(string s, int k) {
+        int cnt[26] = {0}; int l=0, best=0, mf=0;
+        for (int r=0;r<(int)s.size();r++) {
+            cnt[s[r]-'A']++;
+            mf = max(mf, cnt[s[r]-'A']);
+            if (r - l + 1 - mf > k) { cnt[s[l]-'A']--; l++; }
+            best = max(best, r - l + 1);
         }
-        return l;
+        return best;
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ cout<<Solution().characterReplacement("AABABBA", 1)<<endl; }

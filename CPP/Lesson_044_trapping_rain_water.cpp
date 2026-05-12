@@ -3,17 +3,16 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
-// Category   : Binary Search
-// Difficulty : Medium
-// Study Plan : Day 28
+// Lesson     : 044 -- Trapping Rain Water
+// Category   : Two Pointers
+// Difficulty : Hard
+// Study Plan : Day 22
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Given heights, compute how much water can be trapped after raining.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: [0,1,0,2,1,0,1,3,2,1,2,1] -> 6
 // =============================================================
 
 #include <vector>
@@ -33,15 +32,13 @@
 using namespace std;
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
-        while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
+    int trap(vector<int>& h) {
+        int l=0, r=h.size()-1, lm=0, rm=0, ans=0;
+        while (l<r) {
+            if (h[l]<h[r]) { lm=max(lm,h[l]); ans+=lm-h[l]; l++; }
+            else { rm=max(rm,h[r]); ans+=rm-h[r]; r--; }
         }
-        return l;
+        return ans;
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ vector<int> v={0,1,0,2,1,0,1,3,2,1,2,1}; cout<<Solution().trap(v)<<endl; }

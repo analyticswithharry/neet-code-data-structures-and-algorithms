@@ -3,17 +3,17 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
-// Category   : Binary Search
+// Lesson     : 052 -- Daily Temperatures
+// Category   : Stack
 // Difficulty : Medium
-// Study Plan : Day 28
+// Study Plan : Day 26
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Given temperatures, for each day return the number of days until a
+//   warmer temperature, or 0 if none.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: [73,74,75,71,69,72,76,73] -> [1,1,4,2,1,1,0,0]
 // =============================================================
 
 #include <vector>
@@ -33,15 +33,15 @@
 using namespace std;
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
-        while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
+    vector<int> dailyTemperatures(vector<int>& t) {
+        int n = t.size(); vector<int> res(n,0); stack<int> st;
+        for (int i=0;i<n;i++) {
+            while (!st.empty() && t[st.top()] < t[i]) {
+                int j = st.top(); st.pop(); res[j] = i - j;
+            }
+            st.push(i);
         }
-        return l;
+        return res;
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ vector<int> v={73,74,75,71,69,72,76,73}; for (int x: Solution().dailyTemperatures(v)) cout<<x<<" "; cout<<endl; }

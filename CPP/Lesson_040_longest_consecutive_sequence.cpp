@@ -3,17 +3,17 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
-// Category   : Binary Search
+// Lesson     : 040 -- Longest Consecutive Sequence
+// Category   : Arrays and Hashing
 // Difficulty : Medium
-// Study Plan : Day 28
+// Study Plan : Day 20
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Given an unsorted array, return the length of the longest consecutive
+//   elements sequence in O(n).
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: [100,4,200,1,3,2] -> 4 (sequence 1,2,3,4)
 // =============================================================
 
 #include <vector>
@@ -33,15 +33,14 @@
 using namespace std;
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
-        while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
+    int longestConsecutive(vector<int>& nums) {
+        unordered_set<int> s(nums.begin(), nums.end()); int best = 0;
+        for (int n: s) if (!s.count(n-1)) {
+            int cur = n, len = 1;
+            while (s.count(cur+1)) { cur++; len++; }
+            best = max(best, len);
         }
-        return l;
+        return best;
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ vector<int> v={100,4,200,1,3,2}; cout<<Solution().longestConsecutive(v)<<endl; }

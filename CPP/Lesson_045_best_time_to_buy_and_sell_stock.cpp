@@ -3,17 +3,16 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
-// Category   : Binary Search
-// Difficulty : Medium
-// Study Plan : Day 28
+// Lesson     : 045 -- Best Time to Buy and Sell Stock
+// Category   : Sliding Window
+// Difficulty : Easy
+// Study Plan : Day 22
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Given prices, return the maximum profit from a single buy/sell.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: [7,1,5,3,6,4] -> 5
 // =============================================================
 
 #include <vector>
@@ -33,15 +32,10 @@
 using namespace std;
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
-        while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
-        }
-        return l;
+    int maxProfit(vector<int>& prices) {
+        int lo = INT_MAX, best = 0;
+        for (int p: prices) { if (p<lo) lo=p; else if (p-lo>best) best=p-lo; }
+        return best;
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ vector<int> v={7,1,5,3,6,4}; cout<<Solution().maxProfit(v)<<endl; }

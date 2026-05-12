@@ -3,17 +3,17 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
-// Category   : Binary Search
+// Lesson     : 046 -- Longest Substring Without Repeating Characters
+// Category   : Sliding Window
 // Difficulty : Medium
-// Study Plan : Day 28
+// Study Plan : Day 23
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Given a string, find the length of the longest substring without
+//   repeating characters.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: "abcabcbb" -> 3
 // =============================================================
 
 #include <vector>
@@ -33,15 +33,15 @@
 using namespace std;
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
-        while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
+    int lengthOfLongestSubstring(string s) {
+        unordered_map<char,int> seen; int l=0, best=0;
+        for (int r=0;r<(int)s.size();r++) {
+            auto it = seen.find(s[r]);
+            if (it!=seen.end() && it->second>=l) l = it->second+1;
+            seen[s[r]] = r;
+            best = max(best, r-l+1);
         }
-        return l;
+        return best;
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ Solution s; cout<<s.lengthOfLongestSubstring("abcabcbb")<<" "<<s.lengthOfLongestSubstring("bbbbb")<<endl; }

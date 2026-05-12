@@ -3,27 +3,24 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
+// Lesson     : 057 -- Find Minimum in Rotated Sorted Array
 // Category   : Binary Search
 // Difficulty : Medium
 // Study Plan : Day 28
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Given a rotated sorted array of unique elements, return its minimum.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: [3,4,5,1,2] -> 1
 // =============================================================
 
-var minEatingSpeed = function(piles, h) {
-    let l = 1, r = Math.max(...piles);
+var findMin = function(nums) {
+    let l = 0, r = nums.length - 1;
     while (l < r) {
         const mid = (l+r) >> 1;
-        let hrs = 0;
-        for (const p of piles) hrs += Math.ceil(p/mid);
-        if (hrs <= h) r = mid; else l = mid+1;
+        if (nums[mid] > nums[r]) l = mid+1; else r = mid;
     }
-    return l;
+    return nums[l];
 };
-console.log(minEatingSpeed([3,6,7,11], 8));
+console.log(findMin([3,4,5,1,2]), findMin([4,5,6,7,0,1,2]));

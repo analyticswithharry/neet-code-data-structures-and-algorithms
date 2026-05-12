@@ -3,17 +3,16 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
-// Category   : Binary Search
+// Lesson     : 037 -- Group Anagrams
+// Category   : Arrays and Hashing
 // Difficulty : Medium
-// Study Plan : Day 28
+// Study Plan : Day 18
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Given an array of strings strs, group the anagrams together.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: ["eat","tea","tan","ate","nat","bat"] -> [["eat","tea","ate"],["tan","nat"],["bat"]]
 // =============================================================
 
 #include <vector>
@@ -33,15 +32,11 @@
 using namespace std;
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
-        while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
-        }
-        return l;
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> m;
+        for (auto& s: strs) { string k=s; sort(k.begin(),k.end()); m[k].push_back(s); }
+        vector<vector<string>> r; for (auto& p: m) r.push_back(p.second); return r;
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ vector<string> v={"eat","tea","tan","ate","nat","bat"}; auto r=Solution().groupAnagrams(v);
+    for(auto& g:r){ for(auto& s:g) cout<<s<<" "; cout<<"|"; } cout<<endl; }

@@ -3,29 +3,27 @@
 # GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
-# Lesson     : 056 -- Koko Eating Bananas
+# Lesson     : 057 -- Find Minimum in Rotated Sorted Array
 # Category   : Binary Search
 # Difficulty : Medium
 # Study Plan : Day 28
 # =============================================================
 #
 # QUESTION:
-#   Koko eats bananas at speed k per hour. Given piles and h hours,
-#   return the minimum k such that she finishes within h hours.
+#   Given a rotated sorted array of unique elements, return its minimum.
 #
-#   Example: piles=[3,6,7,11], h=8 -> 4
+#   Example: [3,4,5,1,2] -> 1
 # =============================================================
 
-import math
 class Solution:
-    def minEatingSpeed(self, piles, h):
-        l, r = 1, max(piles)
+    def findMin(self, nums):
+        l, r = 0, len(nums)-1
         while l < r:
             mid = (l+r)//2
-            hrs = sum(math.ceil(p/mid) for p in piles)
-            if hrs <= h: r = mid
-            else: l = mid+1
-        return l
+            if nums[mid] > nums[r]: l = mid+1
+            else: r = mid
+        return nums[l]
 
 if __name__ == "__main__":
-    print(Solution().minEatingSpeed([3,6,7,11], 8))
+    print(Solution().findMin([3,4,5,1,2]))
+    print(Solution().findMin([4,5,6,7,0,1,2]))

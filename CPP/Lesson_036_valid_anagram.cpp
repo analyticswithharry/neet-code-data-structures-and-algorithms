@@ -3,17 +3,16 @@
 // GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
-// Lesson     : 056 -- Koko Eating Bananas
-// Category   : Binary Search
-// Difficulty : Medium
-// Study Plan : Day 28
+// Lesson     : 036 -- Valid Anagram
+// Category   : Arrays and Hashing
+// Difficulty : Easy
+// Study Plan : Day 18
 // =============================================================
 //
 // QUESTION:
-//   Koko eats bananas at speed k per hour. Given piles and h hours,
-//   return the minimum k such that she finishes within h hours.
+//   Given two strings s and t, return true if t is an anagram of s.
 //
-//   Example: piles=[3,6,7,11], h=8 -> 4
+//   Example: s = "anagram", t = "nagaram" -> true
 // =============================================================
 
 #include <vector>
@@ -33,15 +32,12 @@
 using namespace std;
 class Solution {
 public:
-    int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1, r = *max_element(piles.begin(), piles.end());
-        while (l < r) {
-            int mid = l + (r-l)/2;
-            long long hrs = 0;
-            for (int p: piles) hrs += (p + mid - 1) / mid;
-            if (hrs <= h) r = mid; else l = mid+1;
-        }
-        return l;
+    bool isAnagram(string s, string t) {
+        if (s.size()!=t.size()) return false;
+        int c[26] = {0};
+        for (size_t i=0;i<s.size();++i){ c[s[i]-'a']++; c[t[i]-'a']--; }
+        for (int x: c) if (x) return false;
+        return true;
     }
 };
-int main(){ vector<int> v={3,6,7,11}; cout<<Solution().minEatingSpeed(v, 8)<<endl; }
+int main(){ Solution s; cout<<s.isAnagram("anagram","nagaram")<<" "<<s.isAnagram("rat","car")<<endl; }
