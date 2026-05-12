@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 210 -- Dota2 Senate
@@ -8,27 +8,12 @@
 // Difficulty : Medium
 // Study Plan : Day 105
 // =============================================================
-
-// -- Problem --------------------------------------------------
-// Title      : Dota2 Senate
-// Category   : Greedy
-// Difficulty : Medium
 //
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
-public class Lesson210_Dota2Senate {
-
-    // TODO: implement solution for "Dota2 Senate"
-    public void solve() {
-        // implement here
-    }
-
-    public static void main(String[] args) {
-        Lesson210_Dota2Senate sol = new Lesson210_Dota2Senate();
-        System.out.println("Lesson 210: Dota2 Senate");
-    }
+// QUESTION:
+//   Senate string of 'R'/'D'. Each round senators ban earliest opponent. Return winning party.
+// =============================================================
+import java.util.*;
+public class Lesson210_Dota2Senate{
+  static String predictPartyVictory(String s){Deque<Integer> R=new ArrayDeque<>(),D=new ArrayDeque<>();int n=s.length();for(int i=0;i<n;i++)(s.charAt(i)=='R'?R:D).add(i);while(!R.isEmpty()&&!D.isEmpty()){int r=R.poll(),d=D.poll();if(r<d)R.add(r+n);else D.add(d+n);}return R.isEmpty()?"Dire":"Radiant";}
+  public static void main(String[]a){System.out.println(predictPartyVictory("RD"));System.out.println(predictPartyVictory("RDD"));}
 }

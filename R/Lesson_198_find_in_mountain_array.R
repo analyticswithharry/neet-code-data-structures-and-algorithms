@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 198 -- Find in Mountain Array
@@ -8,21 +8,9 @@
 # Difficulty : Hard
 # Study Plan : Day 99
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Find in Mountain Array
-# Category   : Binary Search
-# Difficulty : Hard
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
-
-solve <- function() {
-  # TODO: implement solution for "Find in Mountain Array"
-}
-
-# -- Tests ----------------------------------------------------
-cat("Lesson 198: Find in Mountain Array\n")
+# QUESTION:
+#   Mountain array: strictly increasing then strictly decreasing. Return min index with value=target.
+# =============================================================
+findInMountainArray <- function(t,a){ idx<-which(a==t); if(length(idx)==0) -1 else idx[1]-1 }
+cat(findInMountainArray(3,c(1,2,3,4,5,3,1)),"\n")

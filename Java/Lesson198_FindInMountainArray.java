@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 198 -- Find in Mountain Array
@@ -8,27 +8,12 @@
 // Difficulty : Hard
 // Study Plan : Day 99
 // =============================================================
-
-// -- Problem --------------------------------------------------
-// Title      : Find in Mountain Array
-// Category   : Binary Search
-// Difficulty : Hard
 //
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
-public class Lesson198_FindInMountainArray {
-
-    // TODO: implement solution for "Find in Mountain Array"
-    public void solve() {
-        // implement here
-    }
-
-    public static void main(String[] args) {
-        Lesson198_FindInMountainArray sol = new Lesson198_FindInMountainArray();
-        System.out.println("Lesson 198: Find in Mountain Array");
-    }
+// QUESTION:
+//   Mountain array: strictly increasing then strictly decreasing. Return min index with value=target.
+// =============================================================
+public class Lesson198_FindInMountainArray{
+  static int bs(int[] a,int l,int r,int t,boolean asc){while(l<=r){int m=(l+r)/2;if(a[m]==t)return m;if(asc){if(a[m]<t)l=m+1;else r=m-1;}else{if(a[m]>t)l=m+1;else r=m-1;}}return -1;}
+  static int findInMountainArray(int t,int[] a){int lo=0,hi=a.length-1;while(lo<hi){int m=(lo+hi)/2;if(a[m]<a[m+1])lo=m+1;else hi=m;}int p=lo;int i=bs(a,0,p,t,true);return i!=-1?i:bs(a,p+1,a.length-1,t,false);}
+  public static void main(String[]x){System.out.println(findInMountainArray(3,new int[]{1,2,3,4,5,3,1}));}
 }

@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 202 -- Distinct Subsequences
@@ -8,24 +8,17 @@
 # Difficulty : Hard
 # Study Plan : Day 101
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Distinct Subsequences
-# Category   : 2-D Dynamic Programming
-# Difficulty : Hard
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Number of distinct subsequences of s equal to t.
+# =============================================================
+def numDistinct(s,t):
+    m,n=len(s),len(t); dp=[[0]*(n+1) for _ in range(m+1)]
+    for i in range(m+1): dp[i][0]=1
+    for i in range(1,m+1):
+        for j in range(1,n+1):
+            dp[i][j]=dp[i-1][j]+(dp[i-1][j-1] if s[i-1]==t[j-1] else 0)
+    return dp[m][n]
 
-class Solution:
-    def solve(self):
-        # TODO: implement solution for "Distinct Subsequences"
-        pass
-
-
-if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 202: Distinct Subsequences")
+if __name__=="__main__":
+    print(numDistinct("rabbbit","rabbit"))

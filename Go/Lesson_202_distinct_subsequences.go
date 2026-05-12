@@ -2,7 +2,7 @@
 
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 202 -- Distinct Subsequences
@@ -10,27 +10,11 @@
 // Difficulty : Hard
 // Study Plan : Day 101
 // =============================================================
-
+//
+// QUESTION:
+//   Number of distinct subsequences of s equal to t.
+// =============================================================
 package main
-
 import "fmt"
-
-// -- Problem --------------------------------------------------
-// Title      : Distinct Subsequences
-// Category   : 2-D Dynamic Programming
-// Difficulty : Hard
-//
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
-// TODO: implement solution for "Distinct Subsequences"
-func solve() {
-    // implement here
-}
-
-func main() {
-    fmt.Println("Lesson 202: Distinct Subsequences")
-}
+func numDistinct(s,t string) int { m,n:=len(s),len(t); dp:=make([][]int,m+1); for i:=range dp { dp[i]=make([]int,n+1); dp[i][0]=1 }; for i:=1;i<=m;i++ { for j:=1;j<=n;j++ { dp[i][j]=dp[i-1][j]; if s[i-1]==t[j-1] { dp[i][j]+=dp[i-1][j-1] } } }; return dp[m][n] }
+func main(){ fmt.Println(numDistinct("rabbbit","rabbit")) }

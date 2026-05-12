@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 205 -- Course Schedule IV
@@ -8,24 +8,27 @@
 # Difficulty : Medium
 # Study Plan : Day 103
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Course Schedule IV
-# Category   : Graphs
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Given prerequisites, answer queries: is course u a (transitive) prerequisite of v?
+# =============================================================
+def checkIfPrerequisite(n,pre,queries):
+    reach=[[False]*n for _ in range(n)]
+    from collections import defaultdict
+    g=defaultdict(list); ind=[0]*n
+    for a,b in pre: g[a].append(b); ind[b]+=1; reach[a][b]=True
+    from collections import deque
+    q=deque(i for i in range(n) if ind[i]==0); order=[]
+    while q:
+        x=q.popleft(); order.append(x)
+        for y in g[x]:
+            ind[y]-=1
+            if ind[y]==0: q.append(y)
+    for x in order:
+        for y in g[x]:
+            for k in range(n):
+                if reach[k][x]: reach[k][y]=True
+    return [reach[u][v] for u,v in queries]
 
-class Solution:
-    def solve(self):
-        # TODO: implement solution for "Course Schedule IV"
-        pass
-
-
-if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 205: Course Schedule IV")
+if __name__=="__main__":
+    print(checkIfPrerequisite(3,[[1,2],[1,0],[2,0]],[[1,0],[1,2]]))

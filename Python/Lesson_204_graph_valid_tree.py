@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 204 -- Graph Valid Tree
@@ -8,24 +8,22 @@
 # Difficulty : Medium
 # Study Plan : Day 102
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Graph Valid Tree
-# Category   : Graphs
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Given n nodes and edges, determine if they form a tree (connected and no cycles).
+# =============================================================
+def validTree(n,edges):
+    if len(edges)!=n-1: return False
+    par=list(range(n))
+    def find(x):
+        while par[x]!=x: par[x]=par[par[x]]; x=par[x]
+        return x
+    for a,b in edges:
+        ra,rb=find(a),find(b)
+        if ra==rb: return False
+        par[ra]=rb
+    return True
 
-class Solution:
-    def solve(self):
-        # TODO: implement solution for "Graph Valid Tree"
-        pass
-
-
-if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 204: Graph Valid Tree")
+if __name__=="__main__":
+    print(validTree(5,[[0,1],[0,2],[0,3],[1,4]]))
+    print(validTree(5,[[0,1],[1,2],[2,3],[1,3],[1,4]]))

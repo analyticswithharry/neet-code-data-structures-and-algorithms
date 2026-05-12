@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 200 -- Edit Distance
@@ -8,21 +8,9 @@
 // Difficulty : Medium
 // Study Plan : Day 100
 // =============================================================
-
-// -- Problem --------------------------------------------------
-// Title      : Edit Distance
-// Category   : 2-D Dynamic Programming
-// Difficulty : Medium
 //
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
-function solve() {
-    // TODO: implement solution for "Edit Distance"
-}
-
-// -- Tests ----------------------------------------------------
-console.log("Lesson 200: Edit Distance");
+// QUESTION:
+//   Min number of insert/delete/replace ops to convert s1 to s2.
+// =============================================================
+function minDistance(a,b){const m=a.length,n=b.length;const dp=Array.from({length:m+1},()=>new Array(n+1).fill(0));for(let i=0;i<=m;i++)dp[i][0]=i;for(let j=0;j<=n;j++)dp[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++){if(a[i-1]===b[j-1])dp[i][j]=dp[i-1][j-1];else dp[i][j]=1+Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);}return dp[m][n];}
+console.log(minDistance("horse","ros"));console.log(minDistance("intention","execution"));

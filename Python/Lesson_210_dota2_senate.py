@@ -1,6 +1,6 @@
 # =============================================================
 # MIT License | @analyticswithharry2026
-# GitHub  : https://github.com/analyticswithharry2026
+# GitHub  : https://github.com/analyticswithharry
 # YouTube : Analytics with Harry
 # =============================================================
 # Lesson     : 210 -- Dota2 Senate
@@ -8,24 +8,20 @@
 # Difficulty : Medium
 # Study Plan : Day 105
 # =============================================================
-
-# -- Problem --------------------------------------------------
-# Title      : Dota2 Senate
-# Category   : Greedy
-# Difficulty : Medium
 #
-# APPROACH:
-#   Study the problem, then implement below.
-#
-# COMPLEXITY: Time O(?) | Space O(?)
-# --------------------------------------------------------------
+# QUESTION:
+#   Senate string of 'R'/'D'. Each round senators ban earliest opponent. Return winning party.
+# =============================================================
+from collections import deque
+def predictPartyVictory(s):
+    R=deque(); D=deque(); n=len(s)
+    for i,ch in enumerate(s): (R if ch=='R' else D).append(i)
+    while R and D:
+        r=R.popleft(); d=D.popleft()
+        if r<d: R.append(r+n)
+        else: D.append(d+n)
+    return "Radiant" if R else "Dire"
 
-class Solution:
-    def solve(self):
-        # TODO: implement solution for "Dota2 Senate"
-        pass
-
-
-if __name__ == "__main__":
-    sol = Solution()
-    print("Lesson 210: Dota2 Senate")
+if __name__=="__main__":
+    print(predictPartyVictory("RD"))
+    print(predictPartyVictory("RDD"))

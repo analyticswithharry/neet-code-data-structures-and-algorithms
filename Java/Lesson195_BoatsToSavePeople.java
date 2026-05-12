@@ -1,6 +1,6 @@
 // =============================================================
 // MIT License | @analyticswithharry2026
-// GitHub  : https://github.com/analyticswithharry2026
+// GitHub  : https://github.com/analyticswithharry
 // YouTube : Analytics with Harry
 // =============================================================
 // Lesson     : 195 -- Boats to Save People
@@ -8,27 +8,12 @@
 // Difficulty : Medium
 // Study Plan : Day 98
 // =============================================================
-
-// -- Problem --------------------------------------------------
-// Title      : Boats to Save People
-// Category   : Two Pointers
-// Difficulty : Medium
 //
-// APPROACH:
-//   Study the problem, then implement below.
-//
-// COMPLEXITY: Time O(?) | Space O(?)
-// --------------------------------------------------------------
-
-public class Lesson195_BoatsToSavePeople {
-
-    // TODO: implement solution for "Boats to Save People"
-    public void solve() {
-        // implement here
-    }
-
-    public static void main(String[] args) {
-        Lesson195_BoatsToSavePeople sol = new Lesson195_BoatsToSavePeople();
-        System.out.println("Lesson 195: Boats to Save People");
-    }
+// QUESTION:
+//   Each boat holds at most 2 people, total weight <= limit. Return min boats.
+// =============================================================
+import java.util.*;
+public class Lesson195_BoatsToSavePeople{
+  static int numRescueBoats(int[] p,int limit){Arrays.sort(p);int i=0,j=p.length-1,b=0;while(i<=j){if(p[i]+p[j]<=limit)i++;j--;b++;}return b;}
+  public static void main(String[]a){System.out.println(numRescueBoats(new int[]{3,2,2,1},3));System.out.println(numRescueBoats(new int[]{3,5,3,4},5));}
 }
